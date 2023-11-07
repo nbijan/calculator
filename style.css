@@ -47,7 +47,11 @@ body {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+  font-size: 1.7rem;
+  padding-right: 0.7rem;
 }
+
+
 
 .btns {
   display: flex;
