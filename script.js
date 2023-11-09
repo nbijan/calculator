@@ -1,71 +1,83 @@
-const allButtonsContainer = document.querySelectorAll(".btn");
-const calcDisplay = document.querySelector(".cal-screen");
-calcDisplay.textContent = null;
-let isOperatorClicked = false;
-
-//display the input of the user on the calculator display
-allButtonsContainer.forEach((button) => {
-  button.addEventListener("click", (e) => {
-    calcDisplay.textContent += `${e.target.textContent}`;
-    return (displayValue = calcDisplay.textContent);
-  });
-});
-
-//clear the content of the calculator display
-const clearButton = document.querySelector(".btn-clear");
-clearButton.addEventListener("click", (e) => (calcDisplay.textContent = ""));
-
-// saves the operator sign
+const screen = document.querySelector(".screen");
+const numbers = document.querySelectorAll(".number");
 const operators = document.querySelectorAll(".operator");
-operators.forEach((button) =>
-  button.addEventListener("click", (event) => {
-    let firstNumberArray = displayValue.split(/[+\-*\/]/);
-    let firstNumber = firstNumberArray[0];
-    calcDisplay.textContent = "";
-    let operator = event.target.textContent;
-    console.log(
-      `the first number is ${firstNumber} and the operator is ${operator}`
-    );
+const equalButton = document.querySelector(".equal");
+// main operations
+function operate(a, operator, b) {
+  if (operator === "+") return +a + +b;
+  if (operator === "-") return a - b;
+  if (operator === "*") return a * b;
+  if (operator === "/") {
+    if (b === "0") {
+      return 0;
+    }
+    return a / b;
+  }
+}
+
+// Global Variables:
+let displayValue = "";
+let operator = "";
+let currentNumber = "";
+let isOperatorClicked = false;
+let currentResult = null;
+
+// // function that DISPLAYS on SCREEN.
+function updateDisplay() {
+  screen.textContent = displayValue;
+}
+
+// Select ALL NUMBERED buttons.
+numbers.forEach((numberedButton) =>
+  numberedButton.addEventListener("click", (e) => {
+    displayValue += e.target.id;
+    updateDisplay();
   })
 );
 
-//Execute operate function when equalSign is clicked.
-const equalSign = document.querySelector(".equal");
-equalSign.addEventListener("click", operate);
+// Select CLEAR button & Add event handler to clear screen when clicked.
+const clearButton = document.querySelector("#btn-clear");
+clearButton.addEventListener("click", () => {
+  displayValue = "";
+  operator = "";
+  currentNumber = null;
+  screen.textContent = "0";
+});
 
-// main operations
-function add(firstNumber, secondNumber) {
-  const addition = +firstNumber + +secondNumber;
-  calcDisplay.textContent = addition;
-  return addition;
-}
-function subtract(firstNumber, secondNumber) {
-  const subtraction = firstNumber - secondNumber;
-  calcDisplay.textContent = subtraction;
-  return subtraction;
-}
+// // When OPERATOR buttons is clicked on.
+operators.forEach((operatorButton) =>
+  operatorButton.addEventListener("click", (e) => {
+    if (!currentNumber) {
+      // console.log("NO NUMBER IS ENTERED");
+      currentNumber = displayValue;
+      operator = e.target.id;
+      displayValue = "";
+      updateDisplay();
+    } else if (operator) {
+      currentResult = operate(currentNumber, operator, displayValue);
+      displayValue = currentResult;
+      updateDisplay();
+      currentNumber = displayValue;
+      operator = e.target.id;
+      // console.log(operator);
+      displayValue = "";
+    }
+  })
+);
 
-function multiply(firstNumber, secondNumber) {
-  const multiplication = firstNumber * secondNumber;
-  calcDisplay.textContent = multiplication;
-  return multiplication;
-}
-
-function divide(firstNumber, secondNumber) {
-  const division = firstNumber / secondNumber;
-  calcDisplay.textContent = division;
-  return division;
-}
-
-function operate(firstNumber, operator, secondNumber) {
-  let displayArray = displayValue.split(/[+\-*\/=]/);
-  displayArray.splice(displayArray.length - 1, 1);
-  firstNumber = displayArray[0];
-  secondNumber = displayArray[1];
-  let match = displayValue.match(/[+\-*\/]/);
-  operator = match[0];
-  if (operator === "+") add(firstNumber, secondNumber);
-  if (operator === "-") subtract(firstNumber, secondNumber);
-  if (operator === "*") multiply(firstNumber, secondNumber);
-  if (operator === "/") divide(firstNumber, secondNumber);
-}
+// // When EQUAL sign is clicked on.
+equalButton.addEventListener("click", (e) => {
+  if (currentNumber && operator) {
+    currentResult = operate(currentNumber, operator, displayValue);
+    displayValue = currentResult;
+    currentNumber = displayValue;
+    updateDisplay();
+  }
+  if (currentResult) {
+    displayValue = currentResult;
+    currentNumber = displayValue;
+    currentResult = operate(currentNumber, operator, displayValue);
+    displayValue = currentResult;
+    // console.log("DIR CHI 7ARAKA");
+  }
+});
