@@ -3,36 +3,52 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
     <title>Calculator | The Odin Project</title>
   </head>
   <body>
-<div class="flex-wrapper">
-    <div class="cal-container">
-        <div class="screen">
-          
+    <header>
+      <h1 class="title">Calculator</h1>
+      <p class="sub_title">v1.0</p>
+    </header>
+    <div class="flex-wrapper">
+      <div class="cal-container">
+        <div class="calc_screen">
+          <span class="screen"></span>
         </div>
         <div class="buttons">
-          <div class="button-container"><button id='1' class="number">1</button></div>
-          <div class="button-container"><button id='2' class="number">2</button></div>
-          <div class="button-container"><button id='3' class="number">3</button></div>
-          <div class="button-container"><button id='4' class="number">4</button></div>
-          <div class="button-container"><button id='5' class="number">5</button></div>
-          <div class="button-container"><button id='6' class="number">6</button></div>
-          <div class="button-container"><button id='7' class="number">7</button></div>
-          <div class="button-container"><button id='8' class="number">8</button></div>
-          <div class="button-container"><button id='9' class="number">9</button></div>
-          <div class="button-container"><button id='0' class="number">0</button></div>
-          <div class="button-container"><button id='+' class="add operator">+</button></div>
-          <div class="button-container"><button id='-' class="subtract operator">-</button></div>
-          <div class="button-container"><button id='*' class="multiply operator">*</button></div>
-          <div class="button-container"><button id='/' class="divide operator">/</button></div>
-          <div class="button-container"><button id='=' class="equal">=</button></div>
+          <button id="btn-clear" class="clear first_line first_col">C</button>
+          <button id="backspace" class="backspace first_line second_col">
+            CE
+          </button>
+          <button id="%" class="percent first_line">%</button>
+          <button id="/" class="divide operator first_line last_col">÷</button>
+          <button id="7" class="number second_line first_col">7</button>
+          <button id="8" class="number second_line second_col">8</button>
+          <button id="9" class="number second_line">9</button>
+          <button id="*" class="multiply operator second_line last_col">
+            x
+          </button>
+          <button id="4" class="number third_line first_col">4</button>
+          <button id="5" class="number third_line second_col">5</button>
+          <button id="6" class="number third_line">6</button>
+          <button id="-" class="subtract operator third_line last_col">
+            -
+          </button>
+          <button id="1" class="number fourth_line first_col">1</button>
+          <button id="2" class="number fourth_line second_col">2</button>
+          <button id="3" class="number fourth_line">3</button>
+          <button id="+" class="add operator fourth_line last_col">+</button>
+          <button id="0" class="number btn-zero last_line first_col">0</button>
+          <button id="." class="number dot last_line">.</button>
+          <button id="=" class="equal last_line last_col">=</button>
         </div>
-        <div class="button-container"><button id="btn-clear">clear</button></div>
+      </div>
     </div>
-</div>
-
+    <footer>
+      <p>Created by <em><a href="https://github.com/nbijan/" rel="noreferrer noopener" target="_blank">nbijan.</a></em><br>
+        As a project for <em><a href="https://www.theodinproject.com/" rel="noreferrer noopener" target="_blank">The Odin project.</a></em></p>
+    </footer>
   </body>
 </html>
