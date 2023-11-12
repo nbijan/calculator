@@ -35,9 +35,7 @@ function updateDisplay() {
 // Select ALL NUMBERED buttons.
 numbers.forEach((numberedButton) =>
   numberedButton.addEventListener("click", (e) => {
-    if (displayValue.match(/[.]/) && e.target.id === ".") {
-      return;
-    } else if (displayValue === "" && !currentNumber && e.target.id === "0") {
+    if (displayValue === "" && !currentNumber && e.target.id === "0") {
       return;
     } else {
       displayValue += e.target.id;
@@ -61,21 +59,25 @@ operators.forEach((operatorButton) =>
       operator = e.target.id;
       displayValue = "";
       updateDisplay();
-    } else {
+      return;
+    } else if (!nextNumber) {
       nextNumber = displayValue;
-      currentResult = operate(currentNumber, operator, nextNumber);
-      operator = e.target.id;
-      displayValue = currentResult;
-      updateDisplay();
-      currentNumber = displayValue;
-      displayValue = "";
-      nextNumber = "";
-    }
+    } 
+    currentResult = operate(currentNumber, operator, nextNumber);
+    operator = e.target.id;
+    displayValue = currentResult;
+    updateDisplay();
+    currentNumber = displayValue;
+    displayValue = "";
+    nextNumber = "";
   })
 );
 
 // // When EQUAL sign is clicked on.
 equalButton.addEventListener("click", (e) => {
+  if (!currentNumber) {
+    return updateDisplay();
+  }
   if (!nextNumber) {
     nextNumber = displayValue;
   } else {
@@ -91,12 +93,11 @@ const percentage = document.querySelector(".percent");
 percentage.addEventListener("click", () => {
   if (currentNumber) {
     displayValue = displayValue / 100;
-    updateDisplay();
   }
   if (!operator) {
     displayValue = "0";
-    updateDisplay();
   }
+  updateDisplay();
 });
 
 // backspace on last button clicked.
@@ -118,9 +119,24 @@ function clearDisplay() {
 
 // keyboard support
 window.addEventListener("keydown", (e) => {
-
   const allButtons = document.querySelector(`button[id="${e.key}"]`);
-  if(e.key === "/") e.preventDefault();
   const clickEvent = new Event("click");
+  if (!allButtons) {
+    return;
+  } else {
+    if (e.key === "/") {
+      e.preventDefault();
+    }
+  }
   allButtons.dispatchEvent(clickEvent);
+});
+
+// decimal input
+const decimalPoint = document.querySelector(".decimal");
+decimalPoint.addEventListener("click", (e) => {
+  if (displayValue.includes(".") && e.target.id === ".") {
+    return;
+  }
+  displayValue += e.target.id;
+  updateDisplay();
 });
