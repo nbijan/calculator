@@ -37,8 +37,7 @@ numbers.forEach((numberedButton) =>
   numberedButton.addEventListener("click", (e) => {
     if (displayValue.match(/[.]/) && e.target.id === ".") {
       return;
-    }
-    else if (displayValue === "" && !currentNumber && e.target.id === "0") {
+    } else if (displayValue === "" && !currentNumber && e.target.id === "0") {
       return;
     } else {
       displayValue += e.target.id;
@@ -48,7 +47,7 @@ numbers.forEach((numberedButton) =>
 );
 
 // Select CLEAR button & Add event handler to clear screen when clicked.
-const clearButton = document.querySelector("#btn-clear");
+const clearButton = document.querySelector(".clearAll");
 clearButton.addEventListener("click", () => {
   clearDisplay();
   screen.textContent = "0";
@@ -79,15 +78,12 @@ operators.forEach((operatorButton) =>
 equalButton.addEventListener("click", (e) => {
   if (!nextNumber) {
     nextNumber = displayValue;
-    currentResult = operate(currentNumber, operator, nextNumber);
-    displayValue = currentResult;
-    updateDisplay();
   } else {
     currentNumber = currentResult;
-    currentResult = operate(currentNumber, operator, nextNumber);
-    displayValue = currentResult;
-    updateDisplay();
   }
+  currentResult = operate(currentNumber, operator, nextNumber);
+  displayValue = currentResult;
+  updateDisplay();
 });
 
 // percentage value of an operation.
@@ -119,3 +115,12 @@ function clearDisplay() {
   nextNumber = "";
   currentResult = null;
 }
+
+// keyboard support
+window.addEventListener("keydown", (e) => {
+
+  const allButtons = document.querySelector(`button[id="${e.key}"]`);
+  if(e.key === "/") e.preventDefault();
+  const clickEvent = new Event("click");
+  allButtons.dispatchEvent(clickEvent);
+});
