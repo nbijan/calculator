@@ -14,7 +14,13 @@ const equalButton = document.querySelector(".equal");
 function operate(a, operator, b) {
   if (operator === "+") return +a + +b;
   if (operator === "-") return a - b;
-  if (operator === "*") return a * b;
+  if (operator === "*") {
+    let result = a * b;
+    if (result % 1 != 0) {
+      return parseFloat(result.toFixed(4));
+    }
+    return result;
+  }
   if (operator === "/") {
     if (b === "0") {
       alert(
@@ -23,9 +29,13 @@ function operate(a, operator, b) {
       clearDisplay();
       return " ";
     }
-    return a / b;
+    result = a / b;
+    if (result % 1 != 0) {
+      return parseFloat(result.toFixed(4));
+    }
+    return result;
   }
-}
+  }
 
 // // function that DISPLAYS on SCREEN.
 function updateDisplay() {
@@ -62,7 +72,7 @@ operators.forEach((operatorButton) =>
       return;
     } else if (!nextNumber) {
       nextNumber = displayValue;
-    } 
+    }
     currentResult = operate(currentNumber, operator, nextNumber);
     operator = e.target.id;
     displayValue = currentResult;
