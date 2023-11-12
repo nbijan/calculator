@@ -35,7 +35,10 @@ function updateDisplay() {
 // Select ALL NUMBERED buttons.
 numbers.forEach((numberedButton) =>
   numberedButton.addEventListener("click", (e) => {
-    if (displayValue === "" && !currentNumber && e.target.id === "0") {
+    if (displayValue.match(/[.]/) && e.target.id === ".") {
+      return;
+    }
+    else if (displayValue === "" && !currentNumber && e.target.id === "0") {
       return;
     } else {
       displayValue += e.target.id;
