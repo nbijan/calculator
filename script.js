@@ -59,7 +59,7 @@ numbers.forEach((numberedButton) =>
     }
     if (currentResult) {
       currentResult = null;
-      displayValue = "";
+      displayValue = e.target.id
     } else {
       displayValue += e.target.id;
     }
