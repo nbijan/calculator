@@ -57,7 +57,7 @@ numbers.forEach((numberedButton) =>
     if (displayValue === "" && !currentNumber && e.target.id === "0") {
       return;
     }
-    if (currentResult) {
+    if (currentResult && !operator) {
       currentResult = null;
       displayValue = e.target.id
     } else {
