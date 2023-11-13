@@ -163,26 +163,3 @@ img.backspace {
   font-size: 1.19rem;
 }
 
-/* borders around the buttons */
-
-.first_line {
-  border-top: 1px solid rgb(168, 168, 168, 0.7);
-}
-
-.second_line {
-  border-top: 1px solid rgb(168, 168, 168, 0.7);
-  border-bottom: 1px solid rgb(168, 168, 168, 0.7);
-}
-
-.third_line, .fourth_line,.fifth_line, .last_line {
-  border-bottom: 1px solid rgb(168, 168, 168, 0.7);
-} 
-
-.first_col, .last_col {
-  border-left: 1px solid rgb(168, 168, 168, 0.7);
-  border-right: 1px solid rgb(168, 168, 168, 0.7);
-}
-
-.second_col {
-  border-right: 1px solid rgb(168, 168, 168, 0.7);
-}
