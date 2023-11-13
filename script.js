@@ -50,6 +50,10 @@ numbers.forEach((numberedButton) =>
     }
     if (displayValue === "" && !currentNumber && e.target.id === "0") {
       return;
+    }
+    if (currentResult) {
+      currentResult = null;
+      displayValue = "";
     } else {
       displayValue += e.target.id;
     }
@@ -119,9 +123,9 @@ backspace.addEventListener("click", () => {
   let backspacedValue = displayValue.split("");
   backspacedValue.splice(backspacedValue.length - 1, 1);
   displayValue = backspacedValue.join("");
-  if (displayValue === "" ) {
+  if (displayValue === "") {
     displayValue = "0";
-  } 
+  }
   updateDisplay();
 });
 
@@ -161,7 +165,9 @@ decimalPoint.addEventListener("click", (e) => {
 const squared = document.querySelector(".sqr");
 squared.addEventListener("click", () => {
   displayValue = displayValue ** 2;
+  currentResult = displayValue;
   updateDisplay();
+  currentResult = displayValue;
 });
 
 // negative value of a number.
@@ -174,8 +180,13 @@ negativeValue.addEventListener("click", () => {
 // square root of a number
 const sqrt = document.querySelector(".sqrt");
 sqrt.addEventListener("click", () => {
-  displayValue = Math.sqrt(displayValue);
+  result = Math.sqrt(displayValue);
+  displayValue = result;
+  if (result % 1 != 0) {
+    displayValue = parseFloat(result.toFixed(4));
+  }
   updateDisplay();
+  currentResult = displayValue;
 });
 
 // reciprocal of a number
@@ -193,4 +204,5 @@ reciprocal.addEventListener("click", () => {
     displayValue = parseFloat(result.toFixed(4));
   }
   updateDisplay();
+  currentResult = displayValue;
 });
