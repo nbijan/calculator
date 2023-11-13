@@ -54,8 +54,8 @@ header {
 .cal-container {
   width: 378px;
   height: 467.108px;
-  background-color: #1c2533;
-  /* background: linear-gradient(#1c2533 24.5%,  #151C26); */
+  /* background-color: #1c2533; */
+  background: linear-gradient(#1c2533 22.5%, #151c26);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -82,7 +82,7 @@ header {
 
 .btn-zero {
   flex-grow: 2;
-} 
+}
 
 .buttons {
   width: 307.764px;
@@ -100,6 +100,11 @@ button {
   font-size: 1.29rem;
 }
 
+button.number:hover, .decimal:hover, .special_function:hover, .operator:hover {
+  background-color: #232f3f;
+}
+
+
 .operator {
   color: #fc7643;
 }
@@ -109,19 +114,21 @@ button {
   color: #1c2533;
 }
 
-.clearAll,
-.percent,
-.backspace {
+.equal:hover {
+  background-color: #f4936d;
+}
+
+.special_function {
   color: #af4f41;
 }
+
+
 
 footer {
   text-align: center;
   font-family: "Open Sans", sans-serif;
   font-size: 0.81rem;
   color: #273248;
-
-  
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -134,28 +141,48 @@ a {
   text-decoration: underline #1c2533;
 }
 
+img.backspace {
+  width: 23px;
+}
+
+.reciprocal-icon {
+  width: 23px;
+  margin-left: 1px;
+}
+.sqr_icon {
+  width: 17px;
+  margin-left: 5.5px;
+}
+
+.sqrt-icon {
+  width: 20px;
+  margin-left: 1.5px;
+}
+
+.special_function {
+  font-size: 1.19rem;
+}
+
 /* borders around the buttons */
 
-/* 
 .first_line {
-  border-top: 1px solid #a9a9a9;
+  border-top: 1px solid rgb(168, 168, 168, 0.7);
 }
 
 .second_line {
-  border-top: 1px solid #a9a9a9;
-  border-bottom: 1px solid #a9a9a9;
+  border-top: 1px solid rgb(168, 168, 168, 0.7);
+  border-bottom: 1px solid rgb(168, 168, 168, 0.7);
 }
 
-.third_line, .fourth_line, .last_line {
-  border-bottom: 1px solid #a9a9a9;
+.third_line, .fourth_line,.fifth_line, .last_line {
+  border-bottom: 1px solid rgb(168, 168, 168, 0.7);
 } 
 
 .first_col, .last_col {
-  border-left: 1px solid #a9a9a9;
-  border-right: 1px solid #a9a9a9;
+  border-left: 1px solid rgb(168, 168, 168, 0.7);
+  border-right: 1px solid rgb(168, 168, 168, 0.7);
 }
 
 .second_col {
-  border-right: 1px solid #a9a9a9;
-} */
-
+  border-right: 1px solid rgb(168, 168, 168, 0.7);
+}

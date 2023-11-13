@@ -35,7 +35,7 @@ function operate(a, operator, b) {
     }
     return result;
   }
-  }
+}
 
 // // function that DISPLAYS on SCREEN.
 function updateDisplay() {
@@ -45,12 +45,15 @@ function updateDisplay() {
 // Select ALL NUMBERED buttons.
 numbers.forEach((numberedButton) =>
   numberedButton.addEventListener("click", (e) => {
+    if (screen.textContent === "0") {
+      displayValue = "";
+    }
     if (displayValue === "" && !currentNumber && e.target.id === "0") {
       return;
     } else {
       displayValue += e.target.id;
-      updateDisplay();
     }
+    updateDisplay();
   })
 );
 
@@ -116,6 +119,9 @@ backspace.addEventListener("click", () => {
   let backspacedValue = displayValue.split("");
   backspacedValue.splice(backspacedValue.length - 1, 1);
   displayValue = backspacedValue.join("");
+  if (displayValue === "" ) {
+    displayValue = "0";
+  } 
   updateDisplay();
 });
 
@@ -148,5 +154,43 @@ decimalPoint.addEventListener("click", (e) => {
     return;
   }
   displayValue += e.target.id;
+  updateDisplay();
+});
+
+// square of a number
+const squared = document.querySelector(".sqr");
+squared.addEventListener("click", () => {
+  displayValue = displayValue ** 2;
+  updateDisplay();
+});
+
+// negative value of a number.
+const negativeValue = document.querySelector(".negate");
+negativeValue.addEventListener("click", () => {
+  displayValue = -1 * displayValue;
+  updateDisplay();
+});
+
+// square root of a number
+const sqrt = document.querySelector(".sqrt");
+sqrt.addEventListener("click", () => {
+  displayValue = Math.sqrt(displayValue);
+  updateDisplay();
+});
+
+// reciprocal of a number
+const reciprocal = document.querySelector(".reciprocal");
+reciprocal.addEventListener("click", () => {
+  if (screen.textContent === "0") {
+    alert(
+      "Dividing by zero? Nice try, but I'm not helping you break the universe. Try a real number, Einstein."
+    );
+    clearDisplay();
+    return " ";
+  }
+  result = 1 / displayValue;
+  if (result % 1 != 0) {
+    displayValue = parseFloat(result.toFixed(4));
+  }
   updateDisplay();
 });
