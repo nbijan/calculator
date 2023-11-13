@@ -6,6 +6,7 @@ let nextNumber = "";
 let currentResult = null;
 
 const screen = document.querySelector(".screen");
+const operatorScreen = document.querySelector(".operator_screen");
 const numbers = document.querySelectorAll(".number");
 const operators = document.querySelectorAll(".operator");
 const equalButton = document.querySelector(".equal");
@@ -43,9 +44,15 @@ function operate(a, operator, b) {
   }
 }
 
-// // function that DISPLAYS on SCREEN.
+// function that DISPLAYS on SCREEN.
 function updateDisplay() {
   screen.textContent = displayValue;
+}
+
+
+// function that DISPLAY OPERATOR on calc screen.
+function updateOperatorDisplay() {
+  operatorScreen.textContent = operator;
 }
 
 // Select ALL NUMBERED buttons.
@@ -59,7 +66,7 @@ numbers.forEach((numberedButton) =>
     }
     if (currentResult && !operator) {
       currentResult = null;
-      displayValue = e.target.id
+      displayValue = e.target.id;
     } else {
       displayValue += e.target.id;
     }
@@ -72,6 +79,7 @@ const clearButton = document.querySelector(".clearAll");
 clearButton.addEventListener("click", () => {
   clearDisplay();
   screen.textContent = "0";
+  operatorScreen.textContent = "";
 });
 
 // // When OPERATOR buttons is clicked on.
@@ -80,6 +88,7 @@ operators.forEach((operatorButton) =>
     if (!currentNumber) {
       currentNumber = displayValue;
       operator = e.target.id;
+      updateOperatorDisplay();
       displayValue = "";
       updateDisplay();
       return;
@@ -88,6 +97,7 @@ operators.forEach((operatorButton) =>
     }
     currentResult = operate(currentNumber, operator, nextNumber);
     operator = e.target.id;
+    updateOperatorDisplay()
     displayValue = currentResult;
     updateDisplay();
     currentNumber = displayValue;
@@ -99,7 +109,7 @@ operators.forEach((operatorButton) =>
 // // When EQUAL sign is clicked on.
 equalButton.addEventListener("click", (e) => {
   if (!currentNumber) {
-    return updateDisplay();
+      return updateDisplay();
   }
   if (!nextNumber) {
     nextNumber = displayValue;
@@ -108,6 +118,7 @@ equalButton.addEventListener("click", (e) => {
   }
   currentResult = operate(currentNumber, operator, nextNumber);
   displayValue = currentResult;
+  operatorScreen.textContent = "=";
   updateDisplay();
 });
 
@@ -172,6 +183,7 @@ const squared = document.querySelector(".sqr");
 squared.addEventListener("click", () => {
   displayValue = displayValue ** 2;
   currentResult = displayValue;
+  operatorScreen.textContent = "=";
   updateDisplay();
   currentResult = displayValue;
 });
@@ -191,6 +203,7 @@ sqrt.addEventListener("click", () => {
   if (result % 1 != 0) {
     displayValue = parseFloat(result.toFixed(4));
   }
+  operatorScreen.textContent = "=";
   updateDisplay();
   currentResult = displayValue;
 });
@@ -209,6 +222,7 @@ reciprocal.addEventListener("click", () => {
   if (result % 1 != 0) {
     displayValue = parseFloat(result.toFixed(4));
   }
+  operatorScreen.textContent = "=";
   updateDisplay();
   currentResult = displayValue;
 });
