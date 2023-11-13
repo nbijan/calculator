@@ -12,8 +12,14 @@ const equalButton = document.querySelector(".equal");
 
 // main operations
 function operate(a, operator, b) {
-  if (operator === "+") return +a + +b;
-  if (operator === "-") return a - b;
+  if (operator === "+") {
+    result = +a + +b;
+    return parseFloat(result.toFixed(4));
+  }
+  if (operator === "-") {
+    result = a - b;
+    return parseFloat(result.toFixed(4));
+  }
   if (operator === "*") {
     let result = a * b;
     if (result % 1 != 0) {
