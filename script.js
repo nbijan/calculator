@@ -49,7 +49,6 @@ function updateDisplay() {
   screen.textContent = displayValue;
 }
 
-
 // function that DISPLAY OPERATOR on calc screen.
 function updateOperatorDisplay() {
   operatorScreen.textContent = operator;
@@ -97,7 +96,7 @@ operators.forEach((operatorButton) =>
     }
     currentResult = operate(currentNumber, operator, nextNumber);
     operator = e.target.id;
-    updateOperatorDisplay()
+    updateOperatorDisplay();
     displayValue = currentResult;
     updateDisplay();
     currentNumber = displayValue;
@@ -109,7 +108,7 @@ operators.forEach((operatorButton) =>
 // // When EQUAL sign is clicked on.
 equalButton.addEventListener("click", (e) => {
   if (!currentNumber) {
-      return updateDisplay();
+    return updateDisplay();
   }
   if (!nextNumber) {
     nextNumber = displayValue;
@@ -148,6 +147,7 @@ backspace.addEventListener("click", () => {
 
 function clearDisplay() {
   displayValue = "";
+  screen.textContent = 0;
   operator = "";
   currentNumber = "";
   nextNumber = "";
@@ -198,14 +198,20 @@ negativeValue.addEventListener("click", () => {
 // square root of a number
 const sqrt = document.querySelector(".sqrt");
 sqrt.addEventListener("click", () => {
-  result = Math.sqrt(displayValue);
-  displayValue = result;
-  if (result % 1 != 0) {
-    displayValue = parseFloat(result.toFixed(4));
+  if (displayValue < 0) {
+    alert("Square root of negativity? It's not therapy; it's math.");
+    clearDisplay();
+    return " ";
+  } else {
+    result = Math.sqrt(displayValue);
+    displayValue = result;
+    if (result % 1 != 0) {
+      displayValue = parseFloat(result.toFixed(4));
+    }
+    operatorScreen.textContent = "=";
+    updateDisplay();
+    currentResult = displayValue;
   }
-  operatorScreen.textContent = "=";
-  updateDisplay();
-  currentResult = displayValue;
 });
 
 // reciprocal of a number
