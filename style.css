@@ -15,6 +15,7 @@ body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   font-size: 1rem;
+
   background: linear-gradient(
     #273248 0%,
     #273248 73.83%,
@@ -23,26 +24,43 @@ body {
   );
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 header {
-  padding-top: 10px;
-  margin-bottom: -25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .title {
-  text-align: center;
   color: #ffebd2;
-  font-size: 2.75rem;
+  font-size: 2.2rem;
+  line-height: 1.05;
+}
+
+.basic_textlogo {
+  font-size: 1.3rem;
+  color: #fc7643;
+}
+
+.logo {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-end;
+}
+
+.logo img {
+  width: 66px;
 }
 
 .sub_title {
   text-align: center;
   color: #fc7643;
   font-size: 0.875rem;
-  margin-top: -0.8rem;
-  padding-left: 16rem;
   font-weight: 600;
 }
 
@@ -54,7 +72,6 @@ header {
 .cal-container {
   width: 378px;
   height: 467.108px;
-  /* background-color: #1c2533; */
   background: linear-gradient(#1c2533 22.5%, #151c26);
   display: flex;
   flex-direction: column;
@@ -73,7 +90,8 @@ header {
   align-items: flex-end;
 }
 
-.screen, .operator_screen {
+.screen,
+.operator_screen {
   padding-right: 1rem;
   padding-bottom: 0.3rem;
   font-size: 1.8rem;
@@ -108,10 +126,12 @@ button {
   font-size: 1.29rem;
 }
 
-button.number:hover, .decimal:hover, .special_function:hover, .operator:hover {
+button.number:hover,
+.decimal:hover,
+.special_function:hover,
+.operator:hover {
   background-color: #232f3f;
 }
-
 
 .operator {
   color: #fc7643;
@@ -130,8 +150,6 @@ button.number:hover, .decimal:hover, .special_function:hover, .operator:hover {
   color: #af4f41;
 }
 
-
-
 footer {
   text-align: center;
   font-family: "Open Sans", sans-serif;
@@ -140,7 +158,6 @@ footer {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  padding-bottom: 1.2rem;
 }
 
 a {
@@ -170,4 +187,3 @@ img.backspace {
 .special_function {
   font-size: 1.19rem;
 }
-
